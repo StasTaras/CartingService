@@ -6,7 +6,9 @@ namespace CartingService.Models
     {
         [BsonId]
         public ObjectId _id { get; set; }
+
         public string UniqueId { get; set; }
-        public List<CartItem> Items { get; set; } = new List<CartItem>();
+
+        public List<CartItem> Items { get; set; } = new();
     }
 }

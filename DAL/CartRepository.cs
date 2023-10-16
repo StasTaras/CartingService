@@ -4,7 +4,7 @@ namespace CartingService.DAL
 {
     public class CartRepository : ICartRepository
     {
-        private const string CARTS_COLLECTION = "Carts";
+        private const string CartsCollection = "Carts";
         private readonly LiteDatabase _liteDb;
 
         public CartRepository(string connectionString)
@@ -14,7 +14,7 @@ namespace CartingService.DAL
 
         public Cart GetCart(string uniqueId)
         {
-            return _liteDb.GetCollection<Cart>(CARTS_COLLECTION).FindOne(c => c.UniqueId == uniqueId)
+            return _liteDb.GetCollection<Cart>(CartsCollection).FindOne(c => c.UniqueId == uniqueId)
                    ?? new Cart { UniqueId = uniqueId };
         }
 
@@ -22,20 +22,15 @@ namespace CartingService.DAL
         {
             var cart = GetCart(uniqueId);
 
-            if (cart.Items == null)
-            {
-                cart.Items = new List<CartItem>();
-            }
-
             cart.Items.Add(item);
 
-            if (_liteDb.GetCollection<Cart>(CARTS_COLLECTION).Exists(c => c.UniqueId == uniqueId))
+            if (_liteDb.GetCollection<Cart>(CartsCollection).Exists(c => c.UniqueId == uniqueId))
             {
-                _liteDb.GetCollection<Cart>(CARTS_COLLECTION).Update(cart);
+                _liteDb.GetCollection<Cart>(CartsCollection).Update(cart);
             }
             else
             {
-                _liteDb.GetCollection<Cart>(CARTS_COLLECTION).Insert(cart);
+                _liteDb.GetCollection<Cart>(CartsCollection).Insert(cart);
             }
         }
 
@@ -43,7 +38,7 @@ namespace CartingService.DAL
         {
             var cart = GetCart(uniqueId);
             cart.Items.RemoveAll(i => i.Id == itemId);
-            _liteDb.GetCollection<Cart>(CARTS_COLLECTION).Update(cart);
+            _liteDb.GetCollection<Cart>(CartsCollection).Update(cart);
         }
     }
 }
