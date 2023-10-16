@@ -1,5 +1,6 @@
 using CartingService.BusinessLogic;
 using CartingService.Models;
+using CartingService.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CartingService.Controllers
@@ -16,21 +17,27 @@ namespace CartingService.Controllers
         }
 
         [HttpGet("{uniqueId}")]
-        public Cart GetCart(string uniqueId)
+        [ProducesResponseType(typeof(Cart), StatusCodes.Status200OK)]
+        public IActionResult GetCart(string uniqueId)
         {
-            return _cartService.GetCart(uniqueId);
+            var cart = _cartService.GetCart(uniqueId);
+            return Ok(cart);
         }
 
         [HttpPost("{uniqueId}")]
-        public void AddItem(string uniqueId, [FromBody] CartItem item)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public IActionResult AddItem(string uniqueId, [FromBody] AddCartItemRequest item)
         {
-            _cartService.AddItem(uniqueId, item);
+            var cart = _cartService.AddItem(uniqueId, item);
+            return CreatedAtAction(nameof(GetCart), new {uniqueId = cart.UniqueId}, cart);
         }
 
-        [HttpDelete("{uniqueId}/{itemId}")]
-        public void RemoveItem(string uniqueId, int itemId)
+        [HttpDelete("{uniqueId}/{itemId:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public IActionResult RemoveItem(string uniqueId, int itemId)
         {
             _cartService.RemoveItem(uniqueId, itemId);
+            return NoContent();
         }
     }
 }

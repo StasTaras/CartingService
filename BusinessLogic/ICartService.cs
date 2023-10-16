@@ -1,12 +1,13 @@
-﻿using CartingService.Models;
+﻿using CartingService.RequestModels;
+using CartingService.ResponseModels;
 
 namespace CartingService.BusinessLogic
 {
     public interface ICartService
     {
-        Cart GetCart(string uniqueId);
+        ResponseCart GetCart(string uniqueId);
 
-        void AddItem(string uniqueId, CartItem item);
+        ResponseCart AddItem(string uniqueId, AddCartItemRequest item);
 
         void RemoveItem(string uniqueId, int itemId);
     }

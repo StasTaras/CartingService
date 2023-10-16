@@ -14,11 +14,13 @@ namespace CartingService.DAL
 
         public Cart GetCart(string uniqueId)
         {
-            return _liteDb.GetCollection<Cart>(CartsCollection).FindOne(c => c.UniqueId == uniqueId)
+            return _liteDb
+                       .GetCollection<Cart>(CartsCollection)
+                       .FindOne(c => c.UniqueId == uniqueId)
                    ?? new Cart { UniqueId = uniqueId };
         }
 
-        public void AddItem(string uniqueId, CartItem item)
+        public Cart AddItem(string uniqueId, CartItem item)
         {
             var cart = GetCart(uniqueId);
 
@@ -32,6 +34,8 @@ namespace CartingService.DAL
             {
                 _liteDb.GetCollection<Cart>(CartsCollection).Insert(cart);
             }
+
+            return cart;
         }
 
         public void RemoveItem(string uniqueId, int itemId)

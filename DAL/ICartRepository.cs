@@ -5,7 +5,7 @@ namespace CartingService.DAL
     {
         Cart GetCart(string uniqueId);
 
-        void AddItem(string uniqueId, CartItem item);
+        Cart AddItem(string uniqueId, CartItem item);
 
         void RemoveItem(string uniqueId, int itemId);
     }
