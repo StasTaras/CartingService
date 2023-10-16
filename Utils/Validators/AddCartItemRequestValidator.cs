@@ -1,7 +1,7 @@
-﻿using CartingService.RequestModels;
+﻿using CartingService.Models.RequestModels;
 using FluentValidation;
 
-namespace CartingService.Validators
+namespace CartingService.Utils.Validators
 {
     public class AddCartItemRequestValidator : AbstractValidator<AddCartItemRequest>
     {

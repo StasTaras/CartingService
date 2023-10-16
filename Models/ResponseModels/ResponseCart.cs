@@ -1,4 +1,4 @@
-﻿namespace CartingService.ResponseModels
+﻿namespace CartingService.Models.ResponseModels
 {
     public class ResponseCart
     {

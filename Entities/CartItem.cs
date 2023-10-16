@@ -1,4 +1,4 @@
-﻿namespace CartingService.Models
+﻿namespace CartingService.Entities
 {
     public class CartItem
     {

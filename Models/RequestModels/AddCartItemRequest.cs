@@ -1,4 +1,4 @@
-﻿namespace CartingService.RequestModels
+﻿namespace CartingService.Models.RequestModels
 {
     public class AddCartItemRequest
     {

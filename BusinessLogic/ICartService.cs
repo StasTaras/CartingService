@@ -1,5 +1,5 @@
-﻿using CartingService.RequestModels;
-using CartingService.ResponseModels;
+﻿using CartingService.Models.RequestModels;
+using CartingService.Models.ResponseModels;
 
 namespace CartingService.BusinessLogic
 {

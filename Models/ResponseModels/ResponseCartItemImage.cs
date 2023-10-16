@@ -1,9 +1,9 @@
-﻿namespace CartingService.ResponseModels
+﻿namespace CartingService.Models.ResponseModels
 {
     public class ResponseCartItemImage
     {
         public ResponseCartItemImage(
-            string url, 
+            string url,
             string altText)
         {
             Url = url;

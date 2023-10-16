@@ -1,5 +1,6 @@
-﻿using CartingService.Models;
+﻿using CartingService.Entities;
 using LiteDB;
+
 namespace CartingService.DAL
 {
     public class CartRepository : ICartRepository

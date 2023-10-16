@@ -1,7 +1,7 @@
 ﻿using CartingService.DAL;
-using CartingService.Models;
-using CartingService.RequestModels;
-using CartingService.ResponseModels;
+using CartingService.Entities;
+using CartingService.Models.RequestModels;
+using CartingService.Models.ResponseModels;
 
 namespace CartingService.BusinessLogic
 {

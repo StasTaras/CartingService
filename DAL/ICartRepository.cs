@@ -1,4 +1,5 @@
-﻿using CartingService.Models;
+﻿using CartingService.Entities;
+
 namespace CartingService.DAL
 {
     public interface ICartRepository

@@ -1,6 +1,6 @@
 ﻿using LiteDB;
 
-namespace CartingService.Models
+namespace CartingService.Entities
 {
     public class Cart
     {

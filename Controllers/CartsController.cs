@@ -1,6 +1,6 @@
 using CartingService.BusinessLogic;
-using CartingService.Models;
-using CartingService.RequestModels;
+using CartingService.Entities;
+using CartingService.Models.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CartingService.Controllers
