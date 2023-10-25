@@ -36,7 +36,6 @@ namespace CartingService.Controllers
             return Ok(cart);
         }
 
-
         [ApiVersion(1.0)]
         [HttpPost("{uniqueId}")]
         [ProducesResponseType(typeof(ResponseCart), StatusCodes.Status201Created)]
