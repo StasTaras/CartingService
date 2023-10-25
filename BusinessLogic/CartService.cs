@@ -24,6 +24,22 @@ namespace CartingService.BusinessLogic
             };
         }
 
+        public IEnumerable<ResponseCartItem> GetCartItems(string uniqueId)
+        {
+            var cart = _cartRepository.GetCart(uniqueId);
+            return cart.Items
+                .Select(item => new ResponseCartItem
+                {
+                    Id = item.Id,
+                    Image = new ResponseCartItemImage(
+                        item.Image != null ? item.Image.Url : string.Empty,
+                        item.Image != null ? item.Image.AltText : string.Empty),
+                    Name = item.Name,
+                    Quantity = item.Quantity,
+                    Price = item.Price
+                });
+        }
+
         public ResponseCart AddItem(string uniqueId, AddCartItemRequest requestItem)
         {
             var item = new CartItem
