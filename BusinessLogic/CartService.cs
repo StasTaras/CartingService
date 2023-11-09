@@ -32,8 +32,8 @@ namespace CartingService.BusinessLogic
                 {
                     Id = item.Id,
                     Image = new ResponseCartItemImage(
-                        item.Image != null ? item.Image.Url : string.Empty,
-                        item.Image != null ? item.Image.AltText : string.Empty),
+                        item.Image?.Url ?? string.Empty,
+                        item.Image?.AltText ?? string.Empty),
                     Name = item.Name,
                     Quantity = item.Quantity,
                     Price = item.Price
