@@ -25,15 +25,32 @@ namespace CartingService.DAL
         {
             var cart = GetCart(uniqueId);
 
-            cart.Items.Add(item);
+            var cartExists = _liteDb.GetCollection<Cart>(CartsCollection).Exists(c => c.UniqueId == uniqueId);
 
-            if (_liteDb.GetCollection<Cart>(CartsCollection).Exists(c => c.UniqueId == uniqueId))
+            if (!cartExists)
             {
-                _liteDb.GetCollection<Cart>(CartsCollection).Update(cart);
+                cart = new Cart
+                {
+                    UniqueId = uniqueId,
+                    Items = new List<CartItem> { item }
+                };
+
+                _liteDb.GetCollection<Cart>(CartsCollection).Insert(cart);
             }
             else
             {
-                _liteDb.GetCollection<Cart>(CartsCollection).Insert(cart);
+                var existingItem = cart.Items.FirstOrDefault(i => i.Id == item.Id);
+
+                if (existingItem != null)
+                {
+                    existingItem.Quantity += item.Quantity;
+                }
+                else
+                {
+                    cart.Items.Add(item);
+                }
+                
+                _liteDb.GetCollection<Cart>(CartsCollection).Update(cart);
             }
 
             return cart;
